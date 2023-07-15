@@ -1,0 +1,10 @@
+.sign{
+  display: flex;
+  color: #fff;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 358px;
+  height: 100vh;
+  max-height: 500px;
+}

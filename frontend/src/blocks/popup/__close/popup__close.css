@@ -1,0 +1,28 @@
+.popup__close{
+  position: fixed;
+  border: none;
+  background: none;
+  height: 32px;
+  width: 32px;
+  right:calc(50% - 249px);
+  top:calc(50% - 206px);
+  transition: filter 300ms ease-in-out;
+  background-image: url(../../../images/Close-Icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.popup__close:hover{
+  filter: opacity(60%);
+  cursor: pointer;
+}
+
+@media all and (max-width:767px) {
+  .popup__close{
+    width: 20px;
+    height: 20px;
+    right:calc(50% - 141px);
+    top:calc(50% - 190px);
+  }
+}

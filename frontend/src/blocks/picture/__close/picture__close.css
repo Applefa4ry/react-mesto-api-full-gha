@@ -1,0 +1,30 @@
+.picture__close{
+  position: absolute;
+  display: block;
+  border: none;
+  background: none;
+  height: 32px;
+  width: 32px;
+  top: -40px;
+  right: -40px;
+  transition: filter 300ms ease-in-out;
+  background-image: url(../../../images/Close-Icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  float: right;
+}
+
+.picture__close:hover{
+  filter: opacity(60%);
+  cursor: pointer;
+}
+
+@media all and (max-width:767px) {
+  .picture__close{
+    width: 20px;
+    height: 20px;
+    right: 0;
+    top: -48px;
+  }
+}

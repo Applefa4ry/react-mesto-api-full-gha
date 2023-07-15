@@ -1,0 +1,22 @@
+.profile{
+  width: 100%;
+  /* min-height: 120px; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 51px;
+}
+
+@media all and (max-width:767px) {
+  .profile{
+    width: calc(100% - 38px);
+    /* min-height: 286px; */
+    margin-left: 19px;
+    margin-right: 19px;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 33px;
+  }
+}

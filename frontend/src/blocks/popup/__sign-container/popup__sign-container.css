@@ -1,0 +1,9 @@
+.popup__sign-container{
+  max-height: 330px;
+  height: 100%;
+  margin: auto 20px;
+  box-sizing: border-box;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+}

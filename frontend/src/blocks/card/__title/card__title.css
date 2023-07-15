@@ -1,0 +1,19 @@
+.card__title{
+  display: inline-block;
+  font-size: 1.5em;
+  font-weight: 900;
+  line-height: 29px;
+  letter-spacing: 0em;
+  color: black;
+  margin-left: 19px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 190px;
+}
+
+@media all and (max-width:767px) {
+  .card__title{
+    margin-bottom: 19px;
+  }
+}

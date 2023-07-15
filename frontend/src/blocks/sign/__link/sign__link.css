@@ -1,0 +1,11 @@
+.sign__link{
+  text-decoration: none;
+  font-family: 'Inter', Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #fff;
+  position: relative;
+  bottom: 36px;
+}

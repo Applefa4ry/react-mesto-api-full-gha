@@ -1,0 +1,21 @@
+.sign__field{
+  width: 100%;
+  border: none;
+  background: none;
+  border-bottom: 2px solid #ccc;
+  margin-bottom: 30px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16.94px;
+  box-sizing: border-box;
+  padding-bottom: 7px;
+  padding-left: 0;
+  transition: border-bottom-color 300ms ease-in-out;
+  color: white
+}
+
+.sign__field:focus{
+  outline: none;
+  border-bottom-color: #FFF;
+}

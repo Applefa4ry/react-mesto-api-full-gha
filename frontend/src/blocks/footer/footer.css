@@ -1,0 +1,12 @@
+.footer{
+  max-width: 880px;
+  width: 100%;
+}
+
+@media all and (max-width:1023px) {
+  .footer{
+    max-width: 728px;
+  }
+}
+
+
