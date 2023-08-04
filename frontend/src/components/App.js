@@ -71,7 +71,7 @@ function App() {
       setCurrentUser(res)
     })
     .catch(err => console.log(`Ошибка ${err}`))
-  }, [])
+  }, [loggedIn])
 
   function handleCardClick(data){
     setSelectedCard(data)
@@ -104,7 +104,7 @@ function App() {
     api.getInitialCards()
       .then(res => setCards(res))
       .catch(err => console.log(`Ошибка ${err}`))
-  }, [])
+  }, [loggedIn])
 
   function handleCardLike(card, setCards){
     const isLiked = card.likes.some(i => i === currentUser._id);
@@ -171,7 +171,7 @@ function App() {
         <Header loggedIn={loggedIn} email={email} onLogOut={handleLogOut} />
         <Routes>
           <Route path="/" element={<ProtectedRouteElement cards={cards} setCards={setCards} handleCardDelete={handleCardDelete} handleCardLike={handleCardLike} handleCardClick={handleCardClick} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} element={Main} loggedIn={loggedIn}/>} />
-          <Route path="/sign-in" element={<Login handleLogin={handleLogin} setEmail={setEmail} />} />
+          <Route path="/sign-in" element={<Login handleLogin={handleLogin} setEmail={setEmail} openError={isInfoTooltipOpen} />} />
           <Route path="/sign-up" element={<Register openTooltip={openTooltip} handleRegister={handleRegister} />} />
         </Routes>
         {false?<Footer />:""}

@@ -23,7 +23,10 @@ function Login(props){
           navigate('/', {replace: true});
         }
       })
-      .catch(err => console.log(err))
+      .catch(err =>{
+        props.openError();
+        console.log(err)
+      })
       .finally(() => {
         setIsLoading(false)
       });

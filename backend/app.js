@@ -24,9 +24,9 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(limiter);
 app.use(cors());
 app.use(requestLogger);
+app.use(limiter);
 app.use(helmet());
 app.use(cookieParser());
 
