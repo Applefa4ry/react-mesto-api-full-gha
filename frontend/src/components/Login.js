@@ -24,7 +24,7 @@ function Login(props){
         }
       })
       .catch(err =>{
-        props.openError();
+        props.openError(false);
         console.log(err)
       })
       .finally(() => {

@@ -171,7 +171,7 @@ function App() {
         <Header loggedIn={loggedIn} email={email} onLogOut={handleLogOut} />
         <Routes>
           <Route path="/" element={<ProtectedRouteElement cards={cards} setCards={setCards} handleCardDelete={handleCardDelete} handleCardLike={handleCardLike} handleCardClick={handleCardClick} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} element={Main} loggedIn={loggedIn}/>} />
-          <Route path="/sign-in" element={<Login handleLogin={handleLogin} setEmail={setEmail} openError={isInfoTooltipOpen} />} />
+          <Route path="/sign-in" element={<Login handleLogin={handleLogin} setEmail={setEmail} openError={setInfoTooltipOpen} />} />
           <Route path="/sign-up" element={<Register openTooltip={openTooltip} handleRegister={handleRegister} />} />
         </Routes>
         {false?<Footer />:""}
