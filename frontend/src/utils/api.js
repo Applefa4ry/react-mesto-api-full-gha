@@ -1,4 +1,5 @@
 import apiCfg from "./utils";
+
 class Api {
   constructor(options) {
     // тело конструктора
@@ -90,6 +91,13 @@ class Api {
   }
 }
 
-const api = new Api(apiCfg);
+const api = new Api({
+  baseUrl: 'https://api.mesto.nomoredomains.xyz',
+  headers: {
+    'Accept': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+    'Content-Type': 'application/json'
+  }
+});
 
 export default api

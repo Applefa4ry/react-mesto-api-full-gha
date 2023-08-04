@@ -10,7 +10,7 @@ import {CurrentUserContext} from '../context/CurrentUserContext';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Register from './Register';
 import Login from './Login';
 import ProtectedRouteElement from './ProtectedRoute';
@@ -27,7 +27,7 @@ function App() {
   const [selectedCard, setSelectedCard] = React.useState({});
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [email, setEmail] = React.useState("");
-  const [isRegister, setIsRegister] = React.useState(false)
+  const [isRegister, setIsRegister] = React.useState(false);
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -40,7 +40,7 @@ function App() {
       auth.checkToken(jwt).then((res) => {
         if (res){
           setLoggedIn(true);
-          setEmail(res.data.email);
+          setEmail(res.email);
           navigate("/", {replace: true})
         }
       });
@@ -52,10 +52,12 @@ function App() {
   }
   
   const handleLogin = () => {
+    handleTokenCheck();
     setLoggedIn(true);
   }
 
   const handleLogOut = () => {
+    localStorage.removeItem('jwt')
     setLoggedIn(false)
   }
 
@@ -105,7 +107,7 @@ function App() {
   }, [])
 
   function handleCardLike(card, setCards){
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
 
     (!isLiked? api.addLike(card._id) : api.deleteLike(card._id))
     .then(newCard => {
