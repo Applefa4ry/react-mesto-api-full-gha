@@ -16,7 +16,7 @@ const updateCfg = {
 
 module.exports.getUsers = (req, res, next) => {
   User.find({})
-    .then((users) => res.send( data = { ...users }))
+    .then((users) => res.send({ data: users }))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new InvalidRequest(''));
@@ -88,7 +88,7 @@ module.exports.editUserInfo = (req, res, next) => {
   const { name, about } = req.body;
 
   User.findByIdAndUpdate(req.user._id, { name, about }, updateCfg)
-    .then((user) => res.send( user ))
+    .then((user) => res.send(user))
     .catch((err) => {
       if (err.name === 'ValidationError' || err.name === 'CastError') {
         next(new InvalidRequest());
