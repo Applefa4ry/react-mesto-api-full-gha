@@ -5,7 +5,7 @@ import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
-import api from '../utils/api';
+import Api from '../utils/api';
 import {CurrentUserContext} from '../context/CurrentUserContext';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
@@ -28,6 +28,14 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [email, setEmail] = React.useState("");
   const [isRegister, setIsRegister] = React.useState(false);
+  const [api, setApi] = React.useState(new Api({
+    baseUrl: 'https://api.mesto.nomoredomains.xyz',
+    headers: {
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+      'Content-Type': 'application/json'
+    }
+  }));
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -48,11 +56,10 @@ function App() {
   }
 
   const handleRegister = (e) => {
-    setIsRegister(e)
+    setIsRegister(e);
   }
   
   const handleLogin = () => {
-    handleTokenCheck();
     setLoggedIn(true);
   }
 
@@ -66,12 +73,23 @@ function App() {
   }
 
   React.useEffect(() => {
+    setApi(new Api({
+      baseUrl: 'https://api.mesto.nomoredomains.xyz',
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+        'Content-Type': 'application/json'
+      }
+    }));
+  }, [loggedIn]);
+
+  React.useEffect(() => {
     api.getUserInfoFromServer()
     .then(res => {
       setCurrentUser(res)
     })
     .catch(err => console.log(`Ошибка ${err}`))
-  }, [loggedIn])
+  }, [api])
 
   function handleCardClick(data){
     setSelectedCard(data)
@@ -104,7 +122,7 @@ function App() {
     api.getInitialCards()
       .then(res => setCards(res))
       .catch(err => console.log(`Ошибка ${err}`))
-  }, [loggedIn])
+  }, [api])
 
   function handleCardLike(card, setCards){
     const isLiked = card.likes.some(i => i === currentUser._id);
@@ -171,7 +189,7 @@ function App() {
         <Header loggedIn={loggedIn} email={email} onLogOut={handleLogOut} />
         <Routes>
           <Route path="/" element={<ProtectedRouteElement cards={cards} setCards={setCards} handleCardDelete={handleCardDelete} handleCardLike={handleCardLike} handleCardClick={handleCardClick} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} element={Main} loggedIn={loggedIn}/>} />
-          <Route path="/sign-in" element={<Login handleLogin={handleLogin} setEmail={setEmail} openError={setInfoTooltipOpen} />} />
+          <Route path="/sign-in" element={<Login handleLogin={handleLogin} setEmail={setEmail} openTooltip={openTooltip} />} />
           <Route path="/sign-up" element={<Register openTooltip={openTooltip} handleRegister={handleRegister} />} />
         </Routes>
         {false?<Footer />:""}

@@ -24,7 +24,7 @@ function Login(props){
         }
       })
       .catch(err =>{
-        props.openError(false);
+        props.openTooltip();
         console.log(err)
       })
       .finally(() => {
